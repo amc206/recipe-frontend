@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Update Recipe</title>
+      <script src="inClassLab.js"></script>
+      <link rel="stylesheet" href="styles.css">
+
+  </head>
+  <body>
+  <h1>Recipe List</h1>
+  <ul id="recipes">
+
+  </ul>
+
+  <form id="search" method="get">
+    <label>Search for Recipe</label>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search">
+
+    <button type="submit" id="searchButton">Search</button>
+  </form>
+
+
+  <form id="updateForm" method="post">
+    <section>
+      <label>Recipe Updated Name</label>
+      <input type="text" id="updateName">
+    </section>
+
+    <section>
+      <label>Updated Number of Servings</label>
+      <input type="number" id="updateServings">
+    </section>
+
+    <button type="submit" id="updateButton">Edit Recipe</button>
+
+  </form>
+
+  </body>
+</html>

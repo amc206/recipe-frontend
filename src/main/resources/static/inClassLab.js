@@ -10,21 +10,18 @@ window.onload = function (){
 function addFormHandler(){
     let formButton = document.querySelector("button");
     formButton.onclick = handleFormSubmit;
+    document.getElementById('updateButton').innerHTML = "update!";
 }
 
-function handleFormSubmit(event){
-    event.preventDefault(); //stop the form from submitting
-    console.log("Handled form submit!");
+function handleFormSubmit(event) {
+    event.preventDefault();
+    console.log("complete");
 
-
-
-
-    //create a new data object
-    let newRecipe = {
-        name: document.getElementById("name").value,
-        servings: document.getElementById("servings").value,
+    let updateRecipe = {
+        name: document.getElementById("name"),
+        servings: document.getElementById("servings"),
         ingredients: [],
-        vegan: false,
+        vegan: true,
         cookTime: 0
     };
 
@@ -32,20 +29,38 @@ function handleFormSubmit(event){
     let params = {
         method: "post",
         mode: "cors",
-        body: JSON.stringify(newRecipe),
+        body: JSON.stringify(updateRecipe),
         headers: {
             "Content-Type": "application/json"
         }
     };
 
     fetch(uri, params)
-        .then(function(response){
+        .then(function (response) {
             console.log(response)
-    });
+        });
 }
 
-function loadRecipes()
-{
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, a, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("recipes");
+    //li = ul.getElementById("recipes");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < ul.length; i++) {
+        a = ul[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            ul[i].style.display = "";
+        } else {
+            ul[i].style.display = "none";
+        }
+    }
+}
+function loadRecipes() {
     let uri = "http://localhost:8080/recipes";
     //pass in security info, headers, MIME types, HTTP verbs: in params
     let params = {
@@ -56,20 +71,18 @@ function loadRecipes()
     //fetch says: go make a remote HTTP request to that endpoint and get a response back
     fetch(uri, params)
         .then(function(response) {
-        console.log(response);
-        return response.json();
+            console.log(response);
+            return response.json();
 
-
-        //if(response.status == 200) {}
-    })
+            //if(response.status == 200) {}
+        })
         .then(function(json){
             console.log(json);
             showRecipes(json);
         });
 }
 
-function showRecipes(recipes)
-{
+function showRecipes(recipes) {
     //get list
     let list = document.getElementById("recipes");
 
@@ -102,8 +115,6 @@ function showRecipes(recipes)
         list.appendChild(li);
 
         //<li>Salad <span>6 servings</span> <span>30 minutes</span></li>
-
     }
-
 }
 
