@@ -8,9 +8,10 @@ window.onload = function (){
 };
 
 function addFormHandler(){
-    let formButton = document.querySelector("button");
+    //let formButton = document.querySelector("button");
+    let formButton = document.getElementById('updateButton');
     formButton.onclick = handleFormSubmit;
-    document.getElementById('updateButton').innerHTML = "update!";
+    //document.getElementById('updateButton').innerHTML = "update!";
 }
 
 function handleFormSubmit(event) {
